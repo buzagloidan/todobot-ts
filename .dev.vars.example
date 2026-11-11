@@ -1,0 +1,14 @@
+# Run node scripts/init-dev-vars.mjs to generate private local keys.
+# Fill your own provider credentials; never commit .dev.vars.
+ACCESS_TOKEN=""
+APP_SECRET=""
+VERIFY_TOKEN=""
+GEMINI_API_KEY=""
+ENCRYPTION_KEY=""
+# Optional secrets, disabled when omitted:
+# POSTHOG_API_KEY=""
+# RESEND_API_KEY=""
+# GOOGLE_CLIENT_ID=""
+# GOOGLE_CLIENT_SECRET=""
+# LEMONSQUEEZY_API_KEY=""
+# LEMONSQUEEZY_WEBHOOK_SECRET=""

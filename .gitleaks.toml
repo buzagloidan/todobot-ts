@@ -1,0 +1,8 @@
+[extend]
+useDefault = true
+
+[[rules]]
+id = "notification-endpoint-token"
+description = "Notification endpoint token grants access to a notification channel"
+regex = '''ntf_(?:dev|prod)_[A-Za-z0-9]{20,}'''
+keywords = ["ntf_"]

@@ -1,0 +1,40 @@
+{
+  "name": "wa-bot-cf",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "tail": "wrangler tail",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "wrangler d1 migrations apply DB --remote",
+    "db:introspect": "drizzle-kit introspect",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "check": "tsc --noEmit && node scripts/check-billing-config.mjs && node scripts/check-google-calendar-config.mjs",
+    "build": "wrangler deploy --dry-run",
+    "db:migrate:local": "wrangler d1 migrations apply DB --local",
+    "types": "wrangler types worker-configuration.d.ts --env-interface CloudflareBindings --include-runtime=false --strict-vars=false"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.4",
+    "hono": "^4.13.18"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "^1.7.0",
+    "@cloudflare/workers-types": "^5.20261110.1",
+    "drizzle-kit": "^0.31.11",
+    "typescript": "^5.8.3",
+    "vitest": "^5.1.0",
+    "wrangler": "^4.160.0"
+  },
+  "description": "Self-hosted Hebrew WhatsApp task and reminder bot on Cloudflare Workers",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/buzagloidan/todobot-ts.git"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "MIT"
+}

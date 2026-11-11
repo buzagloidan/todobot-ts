@@ -1,0 +1,43 @@
+[
+  {
+    "name": "todobot_reminder_actions",
+    "language": "he",
+    "category": "UTILITY",
+    "components": [
+      {
+        "type": "BODY",
+        "text": "🔔 התזכורת שביקשת: {{1}}\n⏰ {{2}}\nאפשר לסמן כהושלם או לבחור זמן חדש.",
+        "example": { "body_text": [["להתקשר לבנק", "13/10/2026 בשעה 10:00"]] }
+      },
+      {
+        "type": "BUTTONS",
+        "buttons": [
+          { "type": "QUICK_REPLY", "text": "הושלם ✅" },
+          { "type": "QUICK_REPLY", "text": "עוד 30 דקות" },
+          { "type": "QUICK_REPLY", "text": "מחר" }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "todobot_morning_agenda",
+    "language": "he",
+    "category": "UTILITY",
+    "components": [
+      {
+        "type": "BODY",
+        "text": "☀️ סדר היום שביקשת ל־{{1}}: {{2}} משימות להיום ו־{{3}} משימות באיחור.\nאפשר לפתוח את המשימות ולבחור עד 3 עדיפויות להיום.",
+        "example": { "body_text": [["13/10/2026", "4", "2"]] }
+      },
+      { "type": "FOOTER", "text": "לכיבוי הסיכום: /agenda off" },
+      {
+        "type": "BUTTONS",
+        "buttons": [
+          { "type": "QUICK_REPLY", "text": "הצג משימות" },
+          { "type": "QUICK_REPLY", "text": "בחר עדיפויות" },
+          { "type": "QUICK_REPLY", "text": "הפסקת הסיכום" }
+        ]
+      }
+    ]
+  }
+]

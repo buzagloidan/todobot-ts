@@ -1,0 +1,79 @@
+name = "wa-bot-cf"
+main = "src/index.ts"
+compatibility_date = "2025-04-01"
+compatibility_flags = ["nodejs_compat"]
+workers_dev = true
+
+[observability]
+enabled = true
+
+[[durable_objects.bindings]]
+name = "CONVERSATIONS"
+class_name = "Conversation"
+
+[[migrations]]
+tag = "conversation-v1"
+new_sqlite_classes = ["Conversation"]
+
+[[durable_objects.bindings]]
+name = "REMINDER_SCHEDULERS"
+class_name = "ReminderScheduler"
+
+[[migrations]]
+tag = "reminder-scheduler-v1"
+new_sqlite_classes = ["ReminderScheduler"]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "bot-db"
+database_id = "00000000-0000-0000-0000-000000000000"
+migrations_dir = "migrations"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "00000000000000000000000000000000"
+
+[[queues.producers]]
+binding = "MSG_QUEUE"
+queue = "wa-msg-queue"
+
+[[queues.consumers]]
+queue = "wa-msg-queue"
+max_batch_size = 10
+max_batch_timeout = 0
+max_retries = 3
+dead_letter_queue = "wa-msg-dlq"
+
+[[queues.producers]]
+binding = "REMINDER_QUEUE"
+queue = "wa-reminders"
+
+[[queues.consumers]]
+queue = "wa-reminders"
+max_batch_size = 1
+max_batch_timeout = 0
+max_retries = 10
+dead_letter_queue = "wa-reminders-dlq"
+
+[triggers]
+crons = ["*/1 * * * *"]
+
+[vars]
+REMINDER_SCHEDULER_ENABLED = "true"
+PHONE_NUMBER_ID = ""
+WHATSAPP_API_VERSION = "v25.0"
+REMINDER_TEMPLATE_NAME = "todo_reminder"
+ALERT_PHONE = ""
+PUBLIC_HOST = "localhost:8787"
+SUPPORT_EMAIL = ""
+FEEDBACK_FROM = ""
+FEEDBACK_TO = ""
+BOT_WHATSAPP_NUMBER = ""
+# Self-hosted copies have no subscription requirement by default.
+BILLING_ENABLED = "false"
+LEMONSQUEEZY_STORE_ID = ""
+LEMONSQUEEZY_VARIANT_ID = ""
+LEMONSQUEEZY_TEST_MODE = "true"
+GOOGLE_CALENDAR_ENABLED = "false"
+GEMINI_CALENDAR_DATA_ALLOWED = "false"
+# Secrets belong in ignored .dev.vars locally or wrangler secret put in production.
